@@ -4,27 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Widget</title>
+    <title>Today's Weather</title>
 </head>
 
 <link href="weatherdesign.css" rel="stylesheet">
 
 <body>
     <div class="widget-wrapper">
-        <div class="top-container">
-            <h1>Weather Widget</h1>
-            <button class="today" id="today">Today</button>
-            <button class="five-day" id="five-day">Five Day Forecast</button>
-        </div>
-        <div class="mid-container">
-            <input type="text" id="city-input" value="Enter City">
-            <h1>City Name <span id="city-name">-</span></h1>
-        </div>
-        <div>
-            
+        <h1>Today's Weather</h1>
+        <input type="text" id="city-input" placeholder="Enter City">
+        <button id="get-weather">Get Weather</button>
+        <a href="forecastwidget.html">Go to 5-Day Forecast</a>
+
+        <div id="current-weather">
+            <h2 id="city-name">City</h2>
+            <p id="condition">Condition</p>
+            <p id="current-temp">-- °F</p>
+            <p>High: <span id="temp-high">--</span> °F</p>
+            <p>Low: <span id="temp-low">--</span> °F</p>
+            <img id="weather-icon" alt="Weather icon">
         </div>
     </div>
-    <script src="fetch-json.js"></script>
+
+    <script src="fetch-weather.js"></script>
 </body>
 
 </html>

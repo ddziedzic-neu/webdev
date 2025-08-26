@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Day Forecast</title>
+</head>
+
+<link href="weatherdesign.css" rel="stylesheet">
+
+<body>
+    <div class="widget-wrapper">
+        <h1>5-Day Forecast</h1>
+        <input type="text" id="city-input" placeholder="Enter City">
+        <button id="get-forecast">Get Forecast</button>
+        <a href="weatherwidget.html">Go to Today's Weather</a>
+
+    <!-- Forecast -->
+        <div id="forecast">
+            <ul id="forecast-list"></ul>
+        </div>
+    </div>
+
+<script src="fetch-forecast.js"></script>
+</body>
+
+</html>
