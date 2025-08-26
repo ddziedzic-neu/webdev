@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Color Quest - Scavenger Hunt</title>
+    <link rel="stylesheet" href="color-styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎨 JavaScript Color Quest</h1>
+            <p>A Scavenger Hunt Adventure in RGB Land</p>
+        </div>
+
+        <!-- Team Setup -->
+        <div id="teamSetup" class="team-info">
+            <h2>Team Registration</h2>
+            <div class="team-input">
+                <input type="text" id="member1" placeholder="Team Member 1 Name" required>
+                <input type="text" id="member2" placeholder="Team Member 2 Name (optional)">
+                <input type="text" id="member3" placeholder="Team Member 3 Name (optional)">
+            </div>
+            <button class="start-btn" onclick="startHunt()">Start the Hunt! 🚀</button>
+        </div>
+
+        <!-- Timer -->
+        <div id="timerSection" style="display: none;">
+            <div class="timer-bar">
+                <div class="timer-progress" id="timerProgress">
+                    <span class="timer-text" id="timerText">20:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div id="progressTracker" class="progress-tracker" style="display: none;">
+            <div class="progress-dot" data-quest="1">1</div>
+            <div class="progress-dot" data-quest="2">2</div>
+            <div class="progress-dot" data-quest="3">3</div>
+            <div class="progress-dot" data-quest="4">4</div>
+            <div class="progress-dot" data-quest="5">5</div>
+            <div class="progress-dot" data-quest="6">6</div>
+            <div class="progress-dot" data-quest="7">7</div>
+            <div class="progress-dot" data-quest="8">8</div>
+        </div>
+
+        <!-- Quest 1: RGB Basics -->
+        <div id="quest1" class="quest">
+            <div class="quest-header">
+                <span class="quest-number">Quest 1</span>
+                <span class="quest-points">10 Points</span>
+            </div>
+            <div class="quest-content">
+                <h3>🎨 The RGB Mystery</h3>
+                <p>Every color on your screen is made of three components. Look at this code and identify what RGB stands for:</p>
+                <div class="code-box">
+function createColor() {
+    const r = 255;  // ??? 
+    const g = 0;    // ???
+    const b = 128;  // ???
+    return `rgb(${r}, ${g}, ${b})`;
+}
+                </div>
+                <p><strong>Question:</strong> What color will rgb(255, 0, 0) produce?</p>
+                <div class="multi-choice">
+                    <button class="choice-btn" onclick="checkQ1('blue')">Blue</button>
+                    <button class="choice-btn" onclick="checkQ1('red')">Red</button>
+                    <button class="choice-btn" onclick="checkQ1('green')">Green</button>
+                    <button class="choice-btn" onclick="checkQ1('yellow')">Yellow</button>
+                </div>
+                <div id="feedback1" class="feedback"></div>
+                <button class="hint-btn" onclick="showHint(1)">Need a Hint? (-2 points)</button>
+                <div id="hint1" class="hint-box">
+                    <strong>Hint:</strong> R stands for Red. When R is at maximum (255) and others are 0, what do you get?
+                </div>
+            </div>
+        </div>
+
+        <!-- Quest 2: Array Challenge -->
+        <div id="quest2" class="quest">
+            <div class="quest-header">
+                <span class="quest-number">Quest 2</span>
+                <span class="quest-points">15 Points</span>
+            </div>
+            <div class="quest-content">
+                <h3>📚 Array Detective</h3>
+                <p>Debug this code! Find the error and figure out what index we need:</p>
+                <div class="code-box">
+const colors = ["rgb(255,0,0)", "rgb(0,255,0)", "rgb(0,0,255)"];
+const targetColor = colors[???];  // We want the green color
+console.log(targetColor);
+                </div>
+                <p><strong>Question:</strong> What index number gets the green color?</p>
+                <input type="text" id="answer2" class="answer-input" placeholder="Enter a number">
+                <button class="submit-answer" onclick="checkQ2()">Submit</button>
+                <div id="feedback2" class="feedback"></div>
+                <button class="hint-btn" onclick="showHint(2)">Need a Hint? (-3 points)</button>
+                <div id="hint2" class="hint-box">
+                    <strong>Hint:</strong> Arrays start counting at 0. Red is at index 0, so green would be at...?
+                </div>
+            </div>
+        </div>
+
+        <!-- Quest 3: Function Fix -->
+        <div id="quest3" class="quest">
+            <div class="quest-header">
+                <span class="quest-number">Quest 3</span>
+                <span class="quest-points">20 Points</span>
+            </div>
+            <div class="quest-content">
+                <h3>🔧 Function Repair Shop</h3>
+                <p>This random color generator is broken! Find the missing piece:</p>
+                <div class="code-box">
+function generateRandomColor() {
+    const r = Math.floor(Math.???() * 256);
+    const g = Math.floor(Math.???() * 256);
+    const b = Math.floor(Math.???() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+                </div>
+                <p><strong>Question:</strong> What Math method generates random numbers?</p>
+                <input type="text" id="answer3" class="answer-input" placeholder="Enter the method name (without parentheses)">
+                <button class="submit-answer" onclick="checkQ3()">Submit</button>
+                <div id="feedback3" class="feedback"></div>
+                <button class="hint-btn" onclick="showHint(3)">Need a Hint? (-4 points)</button>
+                <div id="hint3" class="hint-box">
+                    <strong>Hint:</strong> It's Math.r_____() and rhymes with "andom"... because it is that word!
+                </div>
+            </div>
+        </div>
+
+        <!-- Quest 4: Color Matching -->
+        <div id="quest4" class="quest">
+            <div class="quest-header">
+                <span class="quest-number">Quest 4</span>
+                <span class="quest-points">15 Points</span>
+            </div>
+            <div class="quest-content">
+                <h3>🎯 Color Matcher</h3>
+                <p>Click the color that matches this RGB value:</p>
+                <div class="code-box" style="text-align: center; font-size: 1.5em;">
+rgb(128, 0, 128)
+                </div>
+                <div class="color-grid" id="colorGrid4">
+                    <!-- Colors will be generated by JS -->
+                </div>
+                <div id="feedback4" class="feedback"></div>
+                <button class="hint-btn" onclick="showHint(4)">Need a Hint? (-3 points)</button>
+                <div id="hint4" class="hint-box">
+                    <strong>Hint:</strong> Equal amounts of red and blue make purple!
+                </div>
+            </div>
+        </div>
+
+        <!-- Quest 5: Loop Logic -->
+        <div id="quest5" class="quest">
+            <div class="quest-header">
+                <span class="quest-number">Quest 5</span>
+                <span class="quest-points">25 Points</span>
+            </div>
+            <div class="quest-content">
+                <h3>🔄 Loop Master</h3>
+                <p>How many color squares will this code create?</p>
+                <div class="code-box">
+const container = document.getElementById('colors');
+const numColors = 3;
+
+for (let i = 0; i < numColors * 2; i++) {
+    const square = document.createElement('div');
+    square.className = 'color-square';
+    container.appendChild(square);
+}
+                </div>
+                <p><strong>Question:</strong> How many squares will be created?</p>
+                <input type="text" id="answer5" class="answer-input" placeholder="Enter a number">
+                <button class="submit-answer" onclick="checkQ5()">Submit</button>
+                <div id="feedback5" class="feedback"></div>
+                <button class="hint-btn" onclick="showHint(5)">Need a Hint? (-5 points)</button>
+                <div id="hint5" class="hint-box">
+                    <strong>Hint:</strong> If numColors is 3, and the loop runs while i < numColors * 2, then it runs while i < ???
+                </div>
+            </div>
+        </div>
+
+        <!-- Quest 6: Event Listener -->
+        <div id="quest6" class="quest">
+            <div class="quest-header">
+                <span class="quest-number">Quest 6</span>
+                <span class="quest-points">20 Points</span>
+            </div>
+            <div class="quest-content">
+                <h3>👂 Event Listener Hunt</h3>
+                <p>Complete this event listener code to make squares clickable:</p>
+                <div class="code-box">
+square.addEventListener('???', function() {
+    console.log('Square was clicked!');
+    this.style.opacity = '0.5';
+});
+                </div>
+                <p><strong>Question:</strong> What event type should replace the ??? to detect mouse clicks?</p>
+                <input type="text" id="answer6" class="answer-input" placeholder="Enter the event name">
+                <button class="submit-answer" onclick="checkQ6()">Submit</button>
+                <div id="feedback6" class="feedback"></div>
+                <button class="hint-btn" onclick="showHint(6)">Need a Hint? (-4 points)</button>
+                <div id="hint6" class="hint-box">
+                    <strong>Hint:</strong> It's the most common mouse event, starts with 'c' and rhymes with "trick"!
+                </div>
+            </div>
+        </div>
+
+        <!-- Quest 7: Comparison Challenge -->
+        <div id="quest7" class="quest">
+            <div class="quest-header">
+                <span class="quest-number">Quest 7</span>
+                <span class="quest-points">25 Points</span>
+            </div>
+            <div class="quest-content">
+                <h3>⚖️ Comparison Conundrum</h3>
+                <p>Study this game logic carefully:</p>
+                <div class="code-box">
+let correctColor = "rgb(100, 150, 200)";
+let clickedColor = "rgb(100, 150, 200)";
+
+if (clickedColor ??? correctColor) {
+    console.log("You won!");
+    score++;
+} else {
+    console.log("Try again!");
+}
+                </div>
+                <p><strong>Question:</strong> Which operator should we use to check if the colors match exactly?</p>
+                <div class="multi-choice">
+                    <button class="choice-btn" onclick="checkQ7('=')">= (single equals)</button>
+                    <button class="choice-btn" onclick="checkQ7('==')">== (double equals)</button>
+                    <button class="choice-btn" onclick="checkQ7('===')">==== (triple equals)</button>
+                    <button class="choice-btn" onclick="checkQ7('!=')">!= (not equals)</button>
+                </div>
+                <div id="feedback7" class="feedback"></div>
+                <button class="hint-btn" onclick="showHint(7)">Need a Hint? (-5 points)</button>
+                <div id="hint7" class="hint-box">
+                    <strong>Hint:</strong> For strict comparison in JavaScript, we use three of the same symbol...
+                </div>
+            </div>
+        </div>
+
+        <!-- Quest 8: Final Challenge -->
+        <div id="quest8" class="quest">
+            <div class="quest-header">
+                <span class="quest-number">Quest 8 - FINAL BOSS</span>
+                <span class="quest-points">30 Points</span>
+            </div>
+            <div class="quest-content">
+                <h3>🏆 The Ultimate Color Code</h3>
+                <p>Complete this game-winning function by filling in ALL the blanks:</p>
+                <div class="code-box">
+function checkAnswer(clickedColor) {
+    attempts++;
+    
+    if (clickedColor === correctColor) {
+        // Player wins!
+        message.??? = 'Correct!';
+        winSection.style.??? = 'block';
+        
+        // Update all squares
+        const squares = document.???('.color-square');
+        squares.forEach(square => {
+            square.style.backgroundColor = ???;
+        });
+    }
+}
+                </div>
+                <p><strong>Multi-part Question:</strong></p>
+                <ol>
+                    <li>What property sets text content? <input type="text" id="answer8a" placeholder="property name" style="width: 150px;"></li>
+                    <li>What CSS property shows/hides elements? <input type="text" id="answer8b" placeholder="property name" style="width: 150px;"></li>
+                    <li>What method selects ALL elements with a class? <input type="text" id="answer8c" placeholder="querySelectorAll or getElementsByClassName" style="width: 250px;"></li>
+                    <li>What variable holds the winning color? <input type="text" id="answer8d" placeholder="variable name" style="width: 150px;"></li>
+                </ol>
+                <button class="submit-answer" onclick="checkQ8()">Submit Final Answer</button>
+                <div id="feedback8" class="feedback"></div>
+                <button class="hint-btn" onclick="showHint(8)">Need a Hint? (-6 points)</button>
+                <div id="hint8" class="hint-box">
+                    <strong>Hints:</strong><br>
+                    1. It's not innerHTML, but inner____<br>
+                    2. This property can be 'none' or 'block'<br>
+                    3. To select ALL elements, use querySelector___<br>
+                    4. Look at the if statement - what are we comparing clickedColor to?
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Results -->
+        <div id="finalResults" class="final-results">
+            <div class="trophy">🏆</div>
+            <h2>Quest Complete!</h2>
+            <div class="final-score" id="finalScore">Total Score: 0/150</div>
+            <div class="certificate">
+                <h3>Certificate of Achievement</h3>
+                <p id="teamNames">Team Members</p>
+                <p>Successfully completed the JavaScript Color Quest</p>
+                <p id="completionTime">Time: 00:00</p>
+                <p id="finalGrade">Grade: A+</p>
+            </div>
+            <button class="start-btn" onclick="location.reload()">Play Again</button>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="color-quest.js"></script>
+</body>
+</html>

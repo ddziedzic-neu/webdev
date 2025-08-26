@@ -1,0 +1,35 @@
+*{
+    margin: 10;
+    padding: 10;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    width: 600px;
+    height: 600px;
+}
+
+footer {
+    color:aquamarine;
+    text-align: right;
+    width: 400px;
+    height: auto;
+}
+
+body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: 1.2;
+    color: rgb(252, 188, 255);
+    background-image: url(www.jpg);
+}
+
+img {
+    border-radius: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 15;
+    padding: 15;
+}
